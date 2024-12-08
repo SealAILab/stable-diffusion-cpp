@@ -49,7 +49,6 @@ enum schedule_t {
     DEFAULT,
     DISCRETE,
     KARRAS,
-    AYS,
     N_SCHEDULES
 };
 
@@ -60,11 +59,12 @@ enum sd_type_t {
     SD_TYPE_Q4_0 = 2,
     SD_TYPE_Q4_1 = 3,
     // SD_TYPE_Q4_2 = 4, support has been removed
-    // SD_TYPE_Q4_3 = 5, support has been removed
-    SD_TYPE_Q5_0    = 6,
-    SD_TYPE_Q5_1    = 7,
-    SD_TYPE_Q8_0    = 8,
-    SD_TYPE_Q8_1    = 9,
+    // SD_TYPE_Q4_3 (5) support has been removed
+    SD_TYPE_Q5_0 = 6,
+    SD_TYPE_Q5_1 = 7,
+    SD_TYPE_Q8_0 = 8,
+    SD_TYPE_Q8_1 = 9,
+    // k-quantizations
     SD_TYPE_Q2_K    = 10,
     SD_TYPE_Q3_K    = 11,
     SD_TYPE_Q4_K    = 12,
@@ -79,13 +79,9 @@ enum sd_type_t {
     SD_TYPE_IQ3_S   = 21,
     SD_TYPE_IQ2_S   = 22,
     SD_TYPE_IQ4_XS  = 23,
-    SD_TYPE_I8      = 24,
-    SD_TYPE_I16     = 25,
-    SD_TYPE_I32     = 26,
-    SD_TYPE_I64     = 27,
-    SD_TYPE_F64     = 28,
-    SD_TYPE_IQ1_M   = 29,
-    SD_TYPE_BF16    = 30,
+    SD_TYPE_I8,
+    SD_TYPE_I16,
+    SD_TYPE_I32,
     SD_TYPE_COUNT,
 };
 
@@ -164,12 +160,7 @@ SD_API sd_image_t* img2img(sd_ctx_t* sd_ctx,
                            int sample_steps,
                            float strength,
                            int64_t seed,
-                           int batch_count,
-                           const sd_image_t* control_cond,
-                           float control_strength,
-                           float style_strength,
-                           bool normalize_input,
-                           const char* input_id_images_path);
+                           int batch_count);
 
 SD_API sd_image_t* img2vid(sd_ctx_t* sd_ctx,
                            sd_image_t init_image,

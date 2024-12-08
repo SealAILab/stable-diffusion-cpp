@@ -396,7 +396,7 @@ public:
             if (c_concat->ne[3] != x->ne[3]) {
                 c_concat = ggml_repeat(ctx, c_concat, x);
             }
-            x = ggml_concat(ctx, x, c_concat, 2);
+            x = ggml_concat(ctx, x, c_concat);
         }
 
         if (y != NULL) {
@@ -491,7 +491,7 @@ public:
                     control_offset--;
                 }
 
-                h = ggml_concat(ctx, h, h_skip, 2);
+                h = ggml_concat(ctx, h, h_skip);
 
                 std::string name = "output_blocks." + std::to_string(output_block_idx) + ".0";
 
@@ -541,6 +541,14 @@ struct UNetModel : public GGMLModule {
 
     std::string get_desc() {
         return "unet";
+    }
+
+    size_t get_params_mem_size() {
+        return unet.get_params_mem_size();
+    }
+
+    size_t get_params_num() {
+        return unet.get_params_num();
     }
 
     void get_param_tensors(std::map<std::string, struct ggml_tensor*>& tensors, const std::string prefix) {
