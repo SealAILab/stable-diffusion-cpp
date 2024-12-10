@@ -1,8 +1,8 @@
 # SealAI's Stable DiffusionCpp
 
-Inference Implementation for stable diffusion.
+Inference Implementation for stable diffusion. Powered by SealAI's acceleration engine.
 
-Powered by SealAI's acceleration engine.
+**See our tech report here: https://arxiv.org/pdf/2412.05781**
 
 ----
 Stable diffusion plays a crucial role in generating high-quality images. However,
